@@ -1371,18 +1371,21 @@
       </div>
 
       <div class="contacto-form reveal-right">
-        <form onsubmit="return false;">
+        <form action="https://formsubmit.co/domosecologicos@gmail.com" method="POST">
+          <input type="hidden" name="_subject" value="Nueva consulta desde domosecologicos.cl">
+          <input type="hidden" name="_next" value="https://domos-ecologicos.pages.dev/?enviado=true">
+          <input type="hidden" name="_captcha" value="false">
           <div class="form-group">
             <label>Nombre</label>
-            <input type="text" placeholder="Tu nombre">
+            <input type="text" name="nombre" placeholder="Tu nombre" required>
           </div>
           <div class="form-group">
             <label>Email o WhatsApp</label>
-            <input type="text" placeholder="Para contactarte">
+            <input type="text" name="contacto" placeholder="Para contactarte" required>
           </div>
           <div class="form-group">
             <label>Tipo de proyecto</label>
-            <select>
+            <select name="proyecto">
               <option value="">¿Para qué quieres el domo?</option>
               <option>Vivienda principal</option>
               <option>Casa de campo / parcela</option>
@@ -1393,7 +1396,7 @@
           </div>
           <div class="form-group">
             <label>Cuéntanos tu proyecto</label>
-            <textarea placeholder="Tamaño aproximado, ubicación, presupuesto estimado..."></textarea>
+            <textarea name="mensaje" placeholder="Tamaño aproximado, ubicación, presupuesto estimado..."></textarea>
           </div>
           <button type="submit" class="form-submit">Enviar consulta →</button>
         </form>
