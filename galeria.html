@@ -398,6 +398,23 @@
     .galeria-container { padding: 0 16px 60px; }
     footer { flex-direction: column; text-align: center; }
   }
+  #btn-top {
+    display: none;
+    position: fixed;
+    bottom: 28px; right: 20px;
+    z-index: 500;
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.15);
+    border: 1.5px solid rgba(255,255,255,0.3);
+    backdrop-filter: blur(10px);
+    align-items: center; justify-content: center;
+    opacity: 0; transform: translateY(10px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    cursor: pointer;
+  }
+  #btn-top.visible { opacity: 1; transform: translateY(0); }
+  @media (max-width: 768px) { #btn-top { display: flex; } }
 </style>
 </head>
 <body>
@@ -876,6 +893,10 @@
   <a href="web-domosecologicos.html#contacto" class="btn-primary">Pide tu presupuesto →</a>
 </div>
 
+<button id="btn-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Volver arriba">
+  <svg width="20" height="20" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M18 15l-6-6-6 6"/></svg>
+</button>
+
 <!-- FOOTER -->
 <footer>
   <div class="footer-logo">⬡ DOMOS ECOLÓGICOS CHILE</div>
@@ -996,6 +1017,15 @@ document.addEventListener('keydown', e => {
 items.forEach((item, i) => {
   item.querySelector('img').addEventListener('click', () => openLightbox(i));
 });
+
+// Botón subir — solo móvil, solo al llegar al final
+const btnTop = document.getElementById('btn-top');
+if (window.innerWidth <= 768) {
+  window.addEventListener('scroll', () => {
+    const distanciaAlFinal = document.body.scrollHeight - window.scrollY - window.innerHeight;
+    btnTop.classList.toggle('visible', distanciaAlFinal < 200);
+  }, { passive: true });
+}
 </script>
 </body>
 </html>
