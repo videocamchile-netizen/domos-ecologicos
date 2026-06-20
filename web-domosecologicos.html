@@ -1,0 +1,1437 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KIT Y ESTRUCTURAS PARA DOMOS • Chile</title>
+<meta name="description" content="Kit y estructuras para domos en Chile. Construye tu domo ecológico en Puchuncaví y todo el país.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --verde: #2d6a4f;
+    --verde-claro: #52b788;
+    --verde-neon: #74c69d;
+    --tierra: #a07850;
+    --tierra-claro: #d4a96a;
+    --crema: #f5efe6;
+    --oscuro: #0d1b14;
+    --oscuro2: #132219;
+    --texto: #e8f5ee;
+    --texto-suave: #a8c5b0;
+    --borde: rgba(116, 198, 157, 0.15);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--oscuro);
+    color: var(--texto);
+    font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
+  }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: var(--oscuro2); }
+  ::-webkit-scrollbar-thumb { background: var(--verde); border-radius: 3px; }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 1000;
+    padding: 0 40px;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: background 0.4s, backdrop-filter 0.4s;
+  }
+  nav.scrolled {
+    background: rgba(13, 27, 20, 0.92);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--borde);
+  }
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--verde-neon);
+    text-decoration: none;
+    letter-spacing: 0.05em;
+  }
+  .nav-links {
+    display: flex;
+    gap: 32px;
+    list-style: none;
+  }
+  .nav-links a {
+    color: var(--texto-suave);
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: color 0.3s;
+  }
+  .nav-links a:hover { color: var(--verde-neon); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding: 100px 40px 60px;
+    background: radial-gradient(ellipse at 20% 50%, rgba(45,106,79,0.3) 0%, transparent 60%),
+                radial-gradient(ellipse at 80% 20%, rgba(82,183,136,0.15) 0%, transparent 50%),
+                var(--oscuro);
+    overflow: hidden;
+  }
+
+  /* Elementos decorativos fondo */
+  .hero::before {
+    content: '';
+    position: absolute;
+    width: 600px; height: 600px;
+    border-radius: 50%;
+    border: 1px solid rgba(116,198,157,0.08);
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    animation: pulse-ring 4s ease-in-out infinite;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    width: 900px; height: 900px;
+    border-radius: 50%;
+    border: 1px solid rgba(116,198,157,0.04);
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    animation: pulse-ring 4s ease-in-out infinite 1s;
+  }
+  @keyframes pulse-ring {
+    0%, 100% { opacity: 0.5; transform: translate(-50%, -50%) scale(1); }
+    50% { opacity: 1; transform: translate(-50%, -50%) scale(1.05); }
+  }
+
+  /* Domo decorativo SVG fondo */
+  .domo-bg {
+    position: absolute;
+    right: -100px; top: 50%;
+    transform: translateY(-50%);
+    width: 500px; height: 500px;
+    opacity: 0.04;
+    pointer-events: none;
+  }
+
+  .hero-inner {
+    display: grid;
+    grid-template-columns: 1fr 420px;
+    gap: 80px;
+    align-items: center;
+    max-width: 1200px;
+    width: 100%;
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero-text .eyebrow {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--verde-neon);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .hero-text .eyebrow::before {
+    content: '';
+    width: 40px; height: 1px;
+    background: var(--verde-neon);
+  }
+
+  .hero-text h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.8rem, 5vw, 4.5rem);
+    line-height: 1.1;
+    font-weight: 900;
+    margin-bottom: 24px;
+    color: var(--texto);
+  }
+  .hero-text h1 span {
+    color: var(--verde-neon);
+    display: block;
+  }
+
+  .hero-text p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: var(--texto-suave);
+    margin-bottom: 40px;
+    max-width: 480px;
+  }
+
+  .hero-ctas {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--verde);
+    color: white;
+    padding: 14px 32px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    letter-spacing: 0.05em;
+    transition: all 0.3s;
+    border: 2px solid transparent;
+  }
+  .btn-primary:hover {
+    background: var(--verde-neon);
+    color: var(--oscuro);
+    transform: translateY(-2px);
+  }
+  .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: transparent;
+    color: var(--verde-neon);
+    padding: 14px 32px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    letter-spacing: 0.05em;
+    border: 2px solid var(--verde-neon);
+    transition: all 0.3s;
+  }
+  .btn-secondary:hover {
+    background: rgba(116,198,157,0.1);
+    transform: translateY(-2px);
+  }
+
+  /* ── TARJETA INSTAGRAM ── */
+  .ig-card {
+    background: linear-gradient(145deg, rgba(19,34,25,0.9), rgba(13,27,20,0.95));
+    border: 1px solid var(--borde);
+    border-radius: 20px;
+    padding: 28px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 30px 80px rgba(0,0,0,0.5), 0 0 0 1px rgba(116,198,157,0.1);
+  }
+
+  .ig-profile-top {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 16px;
+  }
+
+  .ig-avatar-wrapper {
+    position: relative;
+    flex-shrink: 0;
+  }
+  .ig-avatar-ring {
+    width: 72px; height: 72px;
+    border-radius: 50%;
+    padding: 3px;
+    background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+    animation: rotate-ring 3s linear infinite;
+  }
+  @keyframes rotate-ring {
+    from { filter: hue-rotate(0deg); }
+    to { filter: hue-rotate(360deg); }
+  }
+  .ig-avatar-inner {
+    width: 100%; height: 100%;
+    border-radius: 50%;
+    border: 3px solid var(--oscuro);
+    overflow: hidden;
+    background: var(--oscuro2);
+  }
+  .ig-avatar-inner img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+  }
+
+  .ig-profile-info h3 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--texto);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 2px;
+  }
+  .ig-verified {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 18px; height: 18px;
+    background: linear-gradient(135deg, #0095f6, #1877f2);
+    border-radius: 50%;
+    flex-shrink: 0;
+    box-shadow: 0 2px 6px rgba(0,149,246,0.4);
+  }
+  .ig-verified svg { width: 10px; height: 10px; }
+  .ig-handle {
+    color: var(--texto-suave);
+    font-size: 0.8rem;
+    text-decoration: none;
+  }
+  .ig-handle:hover { color: var(--verde-neon); }
+
+  .ig-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    margin: 16px 0;
+    padding: 16px 0;
+    border-top: 1px solid var(--borde);
+    border-bottom: 1px solid var(--borde);
+  }
+  .ig-stat {
+    text-align: center;
+  }
+  .ig-stat-num {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--texto);
+  }
+  .ig-stat-label {
+    font-size: 0.7rem;
+    color: var(--texto-suave);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  .ig-bio {
+    font-size: 0.85rem;
+    color: var(--texto-suave);
+    line-height: 1.6;
+    margin-bottom: 12px;
+  }
+  .ig-location {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 0.8rem;
+    color: var(--verde-neon);
+    margin-bottom: 16px;
+  }
+
+  .ig-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+  .ig-btn {
+    padding: 8px;
+    border-radius: 8px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    border: none;
+    transition: all 0.2s;
+  }
+  .ig-btn-follow {
+    background: var(--verde);
+    color: white;
+  }
+  .ig-btn-follow:hover { background: var(--verde-neon); color: var(--oscuro); }
+  .ig-btn-msg {
+    background: rgba(255,255,255,0.06);
+    color: var(--texto);
+    border: 1px solid var(--borde);
+  }
+  .ig-btn-msg:hover { background: rgba(255,255,255,0.1); }
+
+  .ig-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 4px;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .ig-grid-item {
+    aspect-ratio: 1;
+    overflow: hidden;
+    background: var(--oscuro2);
+  }
+  .ig-grid-item img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+  }
+  .ig-grid-item:hover img { transform: scale(1.08); }
+
+  /* ── SECCIÓN GENÉRICA ── */
+  section { padding: 100px 40px; }
+  .container { max-width: 1200px; margin: 0 auto; }
+
+  .section-label {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--verde-neon);
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .section-label::before {
+    content: '';
+    width: 30px; height: 1px;
+    background: var(--verde-neon);
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    font-weight: 900;
+    line-height: 1.2;
+    margin-bottom: 20px;
+    color: var(--texto);
+  }
+
+  .section-sub {
+    font-size: 1rem;
+    color: var(--texto-suave);
+    line-height: 1.8;
+    max-width: 580px;
+    margin-bottom: 60px;
+  }
+
+  /* ── SOBRE NOSOTROS ── */
+  #sobre {
+    background: linear-gradient(180deg, var(--oscuro) 0%, var(--oscuro2) 100%);
+    position: relative;
+    overflow: hidden;
+  }
+  #sobre::before {
+    content: '';
+    position: absolute;
+    left: -200px; top: 50%;
+    transform: translateY(-50%);
+    width: 500px; height: 500px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(45,106,79,0.2) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .sobre-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+
+  .sobre-fotos {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 200px 200px;
+    gap: 12px;
+  }
+  .sobre-foto {
+    border-radius: 12px;
+    overflow: hidden;
+    background: var(--oscuro2);
+  }
+  .sobre-foto:first-child {
+    grid-row: 1 / 3;
+    border-radius: 16px;
+  }
+  .sobre-foto img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+  .sobre-foto:hover img { transform: scale(1.05); }
+
+  .sobre-texto .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 32px;
+  }
+  .tag {
+    background: rgba(116,198,157,0.1);
+    border: 1px solid rgba(116,198,157,0.2);
+    color: var(--verde-neon);
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 500;
+  }
+
+  /* ── SERVICIOS ── */
+  #servicios {
+    background: var(--oscuro);
+  }
+  .servicios-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+  .servicio-card {
+    background: linear-gradient(145deg, rgba(19,34,25,0.8), rgba(13,27,20,0.9));
+    border: 1px solid var(--borde);
+    border-radius: 16px;
+    padding: 36px 28px;
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  .servicio-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--verde), var(--verde-neon));
+    transform: scaleX(0);
+    transition: transform 0.4s ease;
+    transform-origin: left;
+  }
+  .servicio-card:hover {
+    transform: translateY(-8px);
+    border-color: rgba(116,198,157,0.3);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.4);
+  }
+  .servicio-card:hover::before { transform: scaleX(1); }
+
+  .servicio-icon {
+    width: 50px; height: 50px;
+    border-radius: 12px;
+    background: rgba(45,106,79,0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    margin-bottom: 20px;
+  }
+  .servicio-card h3 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--texto);
+    margin-bottom: 12px;
+  }
+  .servicio-card p {
+    font-size: 0.9rem;
+    color: var(--texto-suave);
+    line-height: 1.7;
+  }
+
+  /* ── GALERÍA ── */
+  #galeria {
+    background: var(--oscuro2);
+    padding-bottom: 120px;
+  }
+  .galeria-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: 260px;
+    gap: 12px;
+  }
+  .galeria-item {
+    border-radius: 12px;
+    overflow: hidden;
+    position: relative;
+    background: var(--oscuro);
+    cursor: pointer;
+  }
+  .galeria-item:nth-child(1) {
+    grid-column: span 2;
+    grid-row: span 2;
+  }
+  .galeria-item img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+  }
+  .galeria-item::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(13,27,20,0.6) 0%, transparent 60%);
+    opacity: 0;
+    transition: opacity 0.4s;
+  }
+  .galeria-item:hover img { transform: scale(1.06); }
+  .galeria-item:hover::after { opacity: 1; }
+
+  /* ── MÉTRICAS ── */
+  #metricas {
+    background: linear-gradient(135deg, var(--verde) 0%, var(--oscuro2) 100%);
+    padding: 80px 40px;
+  }
+  .metricas-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 40px;
+    text-align: center;
+  }
+  .metrica {
+    position: relative;
+  }
+  .metrica-num {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.5rem, 4vw, 3.5rem);
+    font-weight: 900;
+    color: white;
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+  .metrica-label {
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.7);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 500;
+  }
+  .metrica::after {
+    content: '';
+    position: absolute;
+    right: 0; top: 50%;
+    transform: translateY(-50%);
+    width: 1px; height: 60px;
+    background: rgba(255,255,255,0.15);
+  }
+  .metrica:last-child::after { display: none; }
+
+  /* ── CONTACTO ── */
+  #contacto {
+    background: var(--oscuro);
+  }
+  .contacto-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: start;
+  }
+  .contacto-info h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    font-weight: 900;
+    color: var(--texto);
+    margin-bottom: 20px;
+  }
+  .contacto-info p {
+    color: var(--texto-suave);
+    line-height: 1.8;
+    margin-bottom: 36px;
+  }
+  .contacto-datos {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .contacto-dato {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: var(--texto-suave);
+    font-size: 0.95rem;
+  }
+  .contacto-dato-icon {
+    width: 40px; height: 40px;
+    border-radius: 10px;
+    background: rgba(116,198,157,0.1);
+    border: 1px solid var(--borde);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    flex-shrink: 0;
+  }
+
+  .contacto-form {
+    background: linear-gradient(145deg, rgba(19,34,25,0.8), rgba(13,27,20,0.9));
+    border: 1px solid var(--borde);
+    border-radius: 20px;
+    padding: 40px;
+  }
+  .form-group {
+    margin-bottom: 20px;
+  }
+  .form-group label {
+    display: block;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--texto-suave);
+    margin-bottom: 8px;
+  }
+  .form-group input,
+  .form-group textarea,
+  .form-group select {
+    width: 100%;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--borde);
+    border-radius: 8px;
+    padding: 12px 16px;
+    color: var(--texto);
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9rem;
+    transition: border-color 0.3s;
+    outline: none;
+  }
+  .form-group input:focus,
+  .form-group textarea:focus,
+  .form-group select:focus {
+    border-color: var(--verde-neon);
+  }
+  .form-group textarea { resize: vertical; min-height: 100px; }
+  .form-group select option { background: var(--oscuro2); }
+  .form-submit {
+    width: 100%;
+    background: var(--verde);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 14px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-family: 'Inter', sans-serif;
+  }
+  .form-submit:hover {
+    background: var(--verde-neon);
+    color: var(--oscuro);
+    transform: translateY(-2px);
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--oscuro2);
+    border-top: 1px solid var(--borde);
+    padding: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  .footer-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    color: var(--verde-neon);
+    font-weight: 700;
+  }
+  .footer-copy {
+    font-size: 0.8rem;
+    color: var(--texto-suave);
+  }
+  .footer-ig a {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--texto-suave);
+    text-decoration: none;
+    font-size: 0.85rem;
+    transition: color 0.3s;
+  }
+  .footer-ig a:hover { color: var(--verde-neon); }
+
+  /* ── ANIMACIONES SCROLL ── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .reveal-left {
+    opacity: 0;
+    transform: translateX(-50px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  .reveal-left.visible {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  .reveal-right {
+    opacity: 0;
+    transform: translateX(50px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  .reveal-right.visible {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  .stagger > * {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .stagger.visible > *:nth-child(1) { opacity: 1; transform: none; transition-delay: 0s; }
+  .stagger.visible > *:nth-child(2) { opacity: 1; transform: none; transition-delay: 0.1s; }
+  .stagger.visible > *:nth-child(3) { opacity: 1; transform: none; transition-delay: 0.2s; }
+  .stagger.visible > *:nth-child(4) { opacity: 1; transform: none; transition-delay: 0.3s; }
+  .stagger.visible > *:nth-child(5) { opacity: 1; transform: none; transition-delay: 0.4s; }
+  .stagger.visible > *:nth-child(6) { opacity: 1; transform: none; transition-delay: 0.5s; }
+
+  /* Parallax */
+  .parallax-layer { will-change: transform; }
+
+  /* ── ANIMACIONES VIDA CONTINUA ── */
+
+  /* Título hero — shimmer en el span verde */
+  .hero-text h1 span {
+    background: linear-gradient(90deg, #74c69d 0%, #b7e4c7 40%, #74c69d 60%, #52b788 100%);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: shimmer-text 4s linear infinite;
+  }
+  @keyframes shimmer-text {
+    0% { background-position: 200% center; }
+    100% { background-position: -200% center; }
+  }
+
+  /* Eyebrow — parpadeo suave del guión */
+  .eyebrow::before {
+    animation: blink-line 2.5s ease-in-out infinite;
+  }
+  @keyframes blink-line {
+    0%, 100% { opacity: 1; transform: scaleX(1); }
+    50% { opacity: 0.4; transform: scaleX(0.6); }
+  }
+
+  /* Tarjeta IG — flota suavemente */
+  .ig-card {
+    animation: float-card 6s ease-in-out infinite;
+  }
+  @keyframes float-card {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-12px); }
+  }
+
+  /* Cards de servicios — flotación escalonada */
+  .servicio-card:nth-child(1) { animation: float-s 5s ease-in-out infinite 0s; }
+  .servicio-card:nth-child(2) { animation: float-s 5s ease-in-out infinite 0.5s; }
+  .servicio-card:nth-child(3) { animation: float-s 5s ease-in-out infinite 1s; }
+  .servicio-card:nth-child(4) { animation: float-s 5s ease-in-out infinite 1.5s; }
+  .servicio-card:nth-child(5) { animation: float-s 5s ease-in-out infinite 2s; }
+  .servicio-card:nth-child(6) { animation: float-s 5s ease-in-out infinite 2.5s; }
+  @keyframes float-s {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-8px); }
+  }
+  /* Anular el float en hover para que el hover tenga prioridad */
+  .servicio-card:hover { animation: none; }
+
+  /* Fotos galería — brillo pulsante */
+  .galeria-item {
+    animation: glow-photo 4s ease-in-out infinite;
+  }
+  .galeria-item:nth-child(2) { animation-delay: 0.8s; }
+  .galeria-item:nth-child(3) { animation-delay: 1.6s; }
+  .galeria-item:nth-child(4) { animation-delay: 2.4s; }
+  .galeria-item:nth-child(5) { animation-delay: 3.2s; }
+  @keyframes glow-photo {
+    0%, 100% { box-shadow: 0 0 0px rgba(116,198,157,0); }
+    50% { box-shadow: 0 0 20px rgba(116,198,157,0.2); }
+  }
+
+  /* Fotos sobre nosotros — flotación suave */
+  .sobre-foto:nth-child(1) { animation: float-img 7s ease-in-out infinite 0s; }
+  .sobre-foto:nth-child(2) { animation: float-img 7s ease-in-out infinite 1s; }
+  .sobre-foto:nth-child(3) { animation: float-img 7s ease-in-out infinite 2s; }
+  @keyframes float-img {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-6px); }
+  }
+
+  /* Tags — pulso de borde */
+  .tag {
+    animation: pulse-tag 3s ease-in-out infinite;
+  }
+  .tag:nth-child(2) { animation-delay: 0.5s; }
+  .tag:nth-child(3) { animation-delay: 1s; }
+  .tag:nth-child(4) { animation-delay: 1.5s; }
+  .tag:nth-child(5) { animation-delay: 2s; }
+  .tag:nth-child(6) { animation-delay: 2.5s; }
+  @keyframes pulse-tag {
+    0%, 100% { border-color: rgba(116,198,157,0.2); }
+    50% { border-color: rgba(116,198,157,0.6); box-shadow: 0 0 8px rgba(116,198,157,0.15); }
+  }
+
+  /* Métricas — brillo en números */
+  .metrica-num {
+    animation: glow-num 3s ease-in-out infinite;
+  }
+  .metrica:nth-child(2) .metrica-num { animation-delay: 0.75s; }
+  .metrica:nth-child(3) .metrica-num { animation-delay: 1.5s; }
+  .metrica:nth-child(4) .metrica-num { animation-delay: 2.25s; }
+  @keyframes glow-num {
+    0%, 100% { text-shadow: none; }
+    50% { text-shadow: 0 0 30px rgba(255,255,255,0.4); }
+  }
+
+  /* Botones CTA hero — latido suave */
+  .btn-primary {
+    animation: pulse-btn 3s ease-in-out infinite;
+  }
+  @keyframes pulse-btn {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(45,106,79,0); }
+    50% { box-shadow: 0 0 0 8px rgba(45,106,79,0.2); }
+  }
+  .btn-primary:hover { animation: none; }
+
+  /* ── CURSOR PERSONALIZADO ── */
+  * { cursor: none !important; }
+  #cursor-dot {
+    position: fixed;
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    background: rgba(116,198,157,0.9);
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: width 0.2s, height 0.2s, background 0.2s, box-shadow 0.2s;
+    box-shadow: 0 0 6px 2px rgba(116,198,157,0.3), 0 0 12px 4px rgba(116,198,157,0.08);
+  }
+  #cursor-glow {
+    position: fixed;
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9998;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(circle, rgba(116,198,157,0.06) 0%, transparent 70%);
+    transition: width 0.15s, height 0.15s;
+  }
+  body:has(a:hover) #cursor-dot,
+  body:has(button:hover) #cursor-dot {
+    width: 16px; height: 16px;
+    background: #b7e4c7;
+    box-shadow: 0 0 16px 5px rgba(116,198,157,0.8), 0 0 40px 12px rgba(116,198,157,0.3);
+  }
+
+  /* ── HOVER EN TEXTOS ── */
+  h1, h2, h3, .section-title, .section-label,
+  .hero-text h1, .contacto-info h2 {
+    transition: text-shadow 0.3s ease;
+  }
+  h1:hover, h2:hover { text-shadow: 0 0 40px rgba(116,198,157,0.25); }
+  h3:hover { text-shadow: 0 0 20px rgba(116,198,157,0.3); color: var(--texto); }
+  .section-title:hover { text-shadow: 0 0 50px rgba(116,198,157,0.2); }
+  .section-label:hover { letter-spacing: 0.28em; color: #b7e4c7; }
+
+  p, .ig-bio, .servicio-card p, .section-sub, .sobre-texto p {
+    transition: color 0.3s ease;
+  }
+  p:hover, .ig-bio:hover, .servicio-card p:hover, .section-sub:hover {
+    color: var(--texto);
+  }
+
+  .nav-logo { transition: text-shadow 0.3s, letter-spacing 0.3s; }
+  .nav-logo:hover { text-shadow: 0 0 20px rgba(116,198,157,0.5); letter-spacing: 0.1em; }
+
+  .ig-stat-num { transition: text-shadow 0.3s, transform 0.3s; }
+  .ig-stat:hover .ig-stat-num {
+    text-shadow: 0 0 15px rgba(116,198,157,0.5);
+    transform: scale(1.15);
+    color: var(--verde-neon);
+  }
+
+  .metrica-label { transition: color 0.3s, letter-spacing 0.3s; }
+  .metrica:hover .metrica-label { color: rgba(255,255,255,0.9); letter-spacing: 0.15em; }
+
+  .tag { transition: all 0.3s ease; }
+  .tag:hover {
+    background: rgba(116,198,157,0.2);
+    color: #b7e4c7;
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 4px 15px rgba(116,198,157,0.2);
+    animation: none;
+  }
+
+  .footer-logo { transition: text-shadow 0.3s, letter-spacing 0.3s; }
+  .footer-logo:hover { text-shadow: 0 0 20px rgba(116,198,157,0.6); letter-spacing: 0.08em; }
+
+  .metrica-num:hover {
+    text-shadow: 0 0 40px rgba(255,255,255,0.6) !important;
+    animation: none;
+    transform: scale(1.05);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    .hero-inner { grid-template-columns: 1fr; gap: 50px; }
+    .ig-card { max-width: 420px; margin: 0 auto; }
+    .sobre-grid { grid-template-columns: 1fr; }
+    .servicios-grid { grid-template-columns: 1fr 1fr; }
+    .galeria-grid { grid-template-columns: 1fr 1fr; }
+    .galeria-item:nth-child(1) { grid-column: span 1; grid-row: span 1; }
+    .metricas-grid { grid-template-columns: repeat(2, 1fr); }
+    .metrica::after { display: none; }
+    .contacto-grid { grid-template-columns: 1fr; }
+    nav { padding: 0 20px; }
+    .nav-links { display: none; }
+    section { padding: 70px 20px; }
+  }
+  @media (max-width: 600px) {
+    .servicios-grid { grid-template-columns: 1fr; }
+    .galeria-grid { grid-template-columns: 1fr; grid-auto-rows: 220px; }
+    .sobre-fotos { grid-template-columns: 1fr; grid-template-rows: 250px 200px 200px; }
+    .sobre-foto:first-child { grid-row: span 1; }
+    .hero-ctas { flex-direction: column; }
+    .btn-primary, .btn-secondary { text-align: center; justify-content: center; }
+    footer { flex-direction: column; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- CURSOR -->
+<div id="cursor-dot"></div>
+<div id="cursor-glow"></div>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="#inicio" class="nav-logo">⬡ DOMOS ECOLÓGICOS</a>
+  <ul class="nav-links">
+    <li><a href="#sobre">Nosotros</a></li>
+    <li><a href="#servicios">Servicios</a></li>
+    <li><a href="galeria.html">Galería</a></li>
+    <li><a href="#contacto">Contacto</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="inicio">
+  <!-- Domo decorativo -->
+  <svg class="domo-bg" viewBox="0 0 200 200" fill="none">
+    <path d="M100 10 L190 100 L10 100 Z" stroke="white" stroke-width="1" fill="none"/>
+    <path d="M100 10 L145 55 L55 55 Z" stroke="white" stroke-width="0.5" fill="none"/>
+    <path d="M55 55 L100 100 L10 100 Z" stroke="white" stroke-width="0.5" fill="none"/>
+    <path d="M145 55 L190 100 L100 100 Z" stroke="white" stroke-width="0.5" fill="none"/>
+    <circle cx="100" cy="100" r="90" stroke="white" stroke-width="0.5" fill="none"/>
+    <circle cx="100" cy="100" r="70" stroke="white" stroke-width="0.3" fill="none"/>
+    <circle cx="100" cy="100" r="50" stroke="white" stroke-width="0.2" fill="none"/>
+  </svg>
+
+  <div class="hero-inner">
+    <div class="hero-text">
+      <div class="eyebrow">Construimos en todo Chile</div>
+      <h1>
+        Construye tu<br>
+        <span>domo ecológico</span>
+        con el mejor kit
+      </h1>
+      <p>
+        Kit y estructuras para domos geodésicos en Chile.
+        Diseño sostenible, construcción natural y calidad
+        que dura décadas.
+      </p>
+      <div class="hero-ctas">
+        <a href="#contacto" class="btn-primary">Pide tu presupuesto →</a>
+        <a href="galeria.html" class="btn-secondary">Ver proyectos</a>
+      </div>
+    </div>
+
+    <!-- TARJETA INSTAGRAM -->
+    <div class="ig-card">
+      <div class="ig-profile-top">
+        <div class="ig-avatar-wrapper">
+          <div class="ig-avatar-ring">
+            <div class="ig-avatar-inner">
+              <img src="assets/instagram/profile.jpg" alt="Domos Ecológicos Chile" onerror="this.style.background='var(--verde)'">
+            </div>
+          </div>
+        </div>
+        <div class="ig-profile-info">
+          <h3>
+            KIT Y ESTRUCTURAS
+            <span class="ig-verified">
+              <svg viewBox="0 0 24 24" fill="white"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" stroke="white" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </h3>
+          <a href="https://www.instagram.com/domosecologicos/" target="_blank" class="ig-handle">@domosecologicos</a>
+        </div>
+      </div>
+
+      <div class="ig-stats">
+        <div class="ig-stat">
+          <div class="ig-stat-num">682</div>
+          <div class="ig-stat-label">Posts</div>
+        </div>
+        <div class="ig-stat">
+          <div class="ig-stat-num">12K</div>
+          <div class="ig-stat-label">Seguidores</div>
+        </div>
+        <div class="ig-stat">
+          <div class="ig-stat-num">547</div>
+          <div class="ig-stat-label">Siguiendo</div>
+        </div>
+      </div>
+
+      <div class="ig-bio">Kit y estructura · Domos geodésicos para Chile y Latinoamérica</div>
+      <div class="ig-location">
+        <svg width="12" height="12" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+        Construimos en todo Chile
+      </div>
+
+      <div class="ig-actions">
+        <a href="https://www.instagram.com/domosecologicos/" target="_blank" class="ig-btn ig-btn-follow">Seguir en Instagram</a>
+        <a href="#contacto" class="ig-btn ig-btn-msg">Contactar</a>
+      </div>
+
+      <div class="ig-grid">
+        <div class="ig-grid-item"><img src="assets/instagram/post-1.jpg" alt="Domo" loading="lazy"></div>
+        <div class="ig-grid-item"><img src="assets/instagram/post-2.jpg" alt="Domo" loading="lazy"></div>
+        <div class="ig-grid-item"><img src="assets/instagram/post-3.jpg" alt="Domo" loading="lazy"></div>
+        <div class="ig-grid-item"><img src="assets/instagram/post-4.jpg" alt="Domo" loading="lazy"></div>
+        <div class="ig-grid-item"><img src="assets/instagram/post-5.jpg" alt="Domo" loading="lazy"></div>
+        <div class="ig-grid-item"><img src="assets/instagram/post-6.jpg" alt="Domo" loading="lazy"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SOBRE NOSOTROS -->
+<section id="sobre">
+  <div class="container">
+    <div class="sobre-grid">
+      <div class="sobre-fotos reveal-left">
+        <div class="sobre-foto">
+          <img src="assets/instagram/post-7.jpg" alt="Domo ecológico Chile" loading="lazy">
+        </div>
+        <div class="sobre-foto">
+          <img src="assets/instagram/post-8.jpg" alt="Estructura domo" loading="lazy">
+        </div>
+        <div class="sobre-foto">
+          <img src="assets/instagram/post-9.jpg" alt="Kit domo" loading="lazy">
+        </div>
+      </div>
+      <div class="sobre-texto reveal-right">
+        <div class="section-label">Quiénes somos</div>
+        <h2 class="section-title">Kit y estructura<br>para tu domo</h2>
+        <p style="color: var(--texto-suave); line-height: 1.8; margin-bottom: 16px;">
+          Somos especialistas en kits y estructuras para domos geodésicos en Chile.
+          Desde Puchuncaví llevamos nuestros proyectos a todo el país,
+          ofreciendo soluciones de construcción natural y sostenible.
+        </p>
+        <p style="color: var(--texto-suave); line-height: 1.8;">
+          Con más de 682 publicaciones compartiendo el proceso y resultado
+          de cada proyecto, nuestra comunidad de más de 12.000 seguidores
+          respalda cada estructura que entregamos.
+        </p>
+        <div class="tags">
+          <span class="tag">Domos geodésicos</span>
+          <span class="tag">Construcción natural</span>
+          <span class="tag">Kit completo</span>
+          <span class="tag">Puchuncaví</span>
+          <span class="tag">Todo Chile</span>
+          <span class="tag">Ecológico</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICIOS -->
+<section id="servicios">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">Lo que hacemos</div>
+      <h2 class="section-title">Nuestros servicios</h2>
+      <p class="section-sub">
+        Todo lo que necesitas para construir tu domo, desde el kit de estructura hasta el asesoramiento técnico.
+      </p>
+    </div>
+    <div class="servicios-grid stagger">
+      <div class="servicio-card">
+        <div class="servicio-icon">⬡</div>
+        <h3>Kit de estructura</h3>
+        <p>Proveemos el kit completo con todos los elementos estructurales para armar tu domo geodésico. Piezas de calidad, diseñadas para durar.</p>
+      </div>
+      <div class="servicio-card">
+        <div class="servicio-icon">🌿</div>
+        <h3>Diseño personalizado</h3>
+        <p>Adaptamos el tamaño y diseño del domo a tu terreno y necesidades. Desde pequeños domos habitacionales hasta grandes estructuras.</p>
+      </div>
+      <div class="servicio-card">
+        <div class="servicio-icon">🔧</div>
+        <h3>Asesoría técnica</h3>
+        <p>Te acompañamos en todo el proceso de construcción. Instrucciones claras, soporte directo y seguimiento de tu proyecto.</p>
+      </div>
+      <div class="servicio-card">
+        <div class="servicio-icon">🚚</div>
+        <h3>Envío a todo Chile</h3>
+        <p>Despachamos el kit a cualquier punto del país. Embalaje seguro para que las piezas lleguen en perfecto estado.</p>
+      </div>
+      <div class="servicio-card">
+        <div class="servicio-icon">📐</div>
+        <h3>Planos y manuales</h3>
+        <p>Incluimos planos técnicos y manual de construcción detallado. Podrás armar tu domo con o sin experiencia previa en construcción.</p>
+      </div>
+      <div class="servicio-card">
+        <div class="servicio-icon">🌱</div>
+        <h3>Materiales ecológicos</h3>
+        <p>Trabajamos con materiales sostenibles y de bajo impacto ambiental. Construye en armonía con la naturaleza.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALERÍA -->
+<section id="galeria">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">Proyectos reales</div>
+      <h2 class="section-title">Galería de domos</h2>
+      <p class="section-sub">
+        Cada domo es único. Aquí algunos de los proyectos que hemos hecho realidad en Chile.
+      </p>
+    </div>
+    <div class="galeria-grid">
+      <div class="galeria-item reveal"><img src="assets/instagram/post-2.jpg" alt="Estructura domo" loading="lazy"></div>
+      <div class="galeria-item reveal"><img src="assets/instagram/post-3.jpg" alt="Kit domo" loading="lazy"></div>
+      <div class="galeria-item reveal"><img src="assets/instagram/post-5.jpg" alt="Domo ecológico" loading="lazy"></div>
+      <div class="galeria-item reveal"><img src="assets/instagram/post-6.jpg" alt="Construcción domo" loading="lazy"></div>
+    </div>
+  </div>
+</section>
+
+<!-- MÉTRICAS -->
+<section id="metricas">
+  <div class="container">
+    <div class="metricas-grid stagger">
+      <div class="metrica">
+        <div class="metrica-num" data-target="12000">0</div>
+        <div class="metrica-label">Seguidores en Instagram</div>
+      </div>
+      <div class="metrica">
+        <div class="metrica-num" data-target="682">0</div>
+        <div class="metrica-label">Proyectos documentados</div>
+      </div>
+      <div class="metrica">
+        <div class="metrica-num" data-target="100">0</div>
+        <div class="metrica-label">% Comprometidos con lo ecológico</div>
+      </div>
+      <div class="metrica">
+        <div class="metrica-num" data-target="1">0</div>
+        <div class="metrica-label">País, muchos domos: Chile</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACTO -->
+<section id="contacto">
+  <div class="container">
+    <div class="contacto-grid">
+      <div class="contacto-info reveal-left">
+        <div class="section-label">Hablemos</div>
+        <h2>¿Quieres tu<br>propio domo?</h2>
+        <p>
+          Cuéntanos tu proyecto — tamaño, ubicación, uso —
+          y te preparamos un presupuesto a medida sin compromiso.
+        </p>
+        <div class="contacto-datos">
+          <div class="contacto-dato">
+            <div class="contacto-dato-icon">📍</div>
+            <span>Construimos en todo Chile</span>
+          </div>
+          <div class="contacto-dato">
+            <div class="contacto-dato-icon">
+              <svg width="18" height="18" fill="#74c69d" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            </div>
+            <a href="https://www.instagram.com/domosecologicos/" target="_blank" style="color: var(--texto-suave); text-decoration: none;">@domosecologicos</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="contacto-form reveal-right">
+        <form onsubmit="return false;">
+          <div class="form-group">
+            <label>Nombre</label>
+            <input type="text" placeholder="Tu nombre">
+          </div>
+          <div class="form-group">
+            <label>Email o WhatsApp</label>
+            <input type="text" placeholder="Para contactarte">
+          </div>
+          <div class="form-group">
+            <label>Tipo de proyecto</label>
+            <select>
+              <option value="">¿Para qué quieres el domo?</option>
+              <option>Vivienda principal</option>
+              <option>Casa de campo / parcela</option>
+              <option>Glamping / turismo</option>
+              <option>Estudio / oficina</option>
+              <option>Otro</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Cuéntanos tu proyecto</label>
+            <textarea placeholder="Tamaño aproximado, ubicación, presupuesto estimado..."></textarea>
+          </div>
+          <button type="submit" class="form-submit">Enviar consulta →</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">⬡ DOMOS ECOLÓGICOS CHILE</div>
+  <div class="footer-copy">© 2026 · Kit y Estructuras para Domos · Puchuncaví, Chile</div>
+  <div class="footer-ig">
+    <a href="https://www.instagram.com/domosecologicos/" target="_blank">
+      <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+      @domosecologicos
+    </a>
+  </div>
+</footer>
+
+<script>
+// NAV scroll
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+  navbar.classList.toggle('scrolled', window.scrollY > 50);
+}, { passive: true });
+
+// Intersection Observer para animaciones
+const observerOptions = { threshold: 0.15, rootMargin: '0px 0px -50px 0px' };
+
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      revealObserver.unobserve(entry.target);
+    }
+  });
+}, observerOptions);
+
+document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .stagger').forEach(el => {
+  revealObserver.observe(el);
+});
+
+// Counter animado
+function animateCounter(el) {
+  const target = parseInt(el.dataset.target);
+  const duration = 2000;
+  const start = performance.now();
+  const step = (now) => {
+    const elapsed = now - start;
+    const progress = Math.min(elapsed / duration, 1);
+    const eased = 1 - Math.pow(1 - progress, 3);
+    const current = Math.floor(eased * target);
+    el.textContent = target >= 1000 ? (current >= 1000 ? (current/1000).toFixed(current >= 10000 ? 0 : 1) + 'K' : current) : current;
+    if (progress < 1) requestAnimationFrame(step);
+    else el.textContent = target >= 1000 ? (target/1000 >= 10 ? Math.floor(target/1000) + 'K' : (target/1000).toFixed(1) + 'K') : target;
+  };
+  requestAnimationFrame(step);
+}
+
+const counterObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.querySelectorAll('[data-target]').forEach(animateCounter);
+      counterObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.3 });
+
+document.querySelectorAll('#metricas').forEach(el => counterObserver.observe(el));
+
+// Parallax suave en hero
+let ticking = false;
+window.addEventListener('scroll', () => {
+  if (!ticking) {
+    requestAnimationFrame(() => {
+      const scrolled = window.scrollY;
+      const heroBg = document.querySelector('.domo-bg');
+      if (heroBg && scrolled < window.innerHeight) {
+        heroBg.style.transform = `translateY(calc(-50% + ${scrolled * 0.3}px))`;
+      }
+      ticking = false;
+    });
+    ticking = true;
+  }
+}, { passive: true });
+
+// ── CURSOR PERSONALIZADO ──
+const cursorDot = document.getElementById('cursor-dot');
+const cursorGlow = document.getElementById('cursor-glow');
+let mouseX = 0, mouseY = 0;
+let glowX = 0, glowY = 0;
+
+document.addEventListener('mousemove', e => {
+  mouseX = e.clientX;
+  mouseY = e.clientY;
+  cursorDot.style.left = mouseX + 'px';
+  cursorDot.style.top  = mouseY + 'px';
+});
+
+// El glow sigue con un leve retraso (efecto magnético)
+function animateGlow() {
+  glowX += (mouseX - glowX) * 0.12;
+  glowY += (mouseY - glowY) * 0.12;
+  cursorGlow.style.left = glowX + 'px';
+  cursorGlow.style.top  = glowY + 'px';
+  requestAnimationFrame(animateGlow);
+}
+animateGlow();
+
+// Agrandar cursor sobre elementos interactivos
+document.querySelectorAll('a, button, .servicio-card, .galeria-item, .tag, .ig-grid-item').forEach(el => {
+  el.addEventListener('mouseenter', () => {
+    cursorDot.style.width  = '8px';
+    cursorDot.style.height = '8px';
+    cursorDot.style.background = 'rgba(183,228,199,0.95)';
+    cursorDot.style.boxShadow = '0 0 8px 3px rgba(116,198,157,0.35), 0 0 18px 6px rgba(116,198,157,0.12)';
+    cursorGlow.style.width  = '50px';
+    cursorGlow.style.height = '50px';
+  });
+  el.addEventListener('mouseleave', () => {
+    cursorDot.style.width  = '5px';
+    cursorDot.style.height = '5px';
+    cursorDot.style.background = 'rgba(116,198,157,0.9)';
+    cursorDot.style.boxShadow = '0 0 6px 2px rgba(116,198,157,0.3), 0 0 12px 4px rgba(116,198,157,0.08)';
+    cursorGlow.style.width  = '28px';
+    cursorGlow.style.height = '28px';
+  });
+});
+
+// Smooth scroll
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function(e) {
+    e.preventDefault();
+    const target = document.querySelector(this.getAttribute('href'));
+    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+});
+</script>
+</body>
+</html>
