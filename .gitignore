@@ -1,1 +1,4 @@
 assets/instagram/._*
+node_modules/
+._*
+.DS_Store
