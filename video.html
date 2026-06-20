@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Video • Domos Ecológicos Chile</title>
+<meta name="description" content="Conoce cómo construimos domos geodésicos en Chile. Video de nuestros proyectos y kits de domos ecológicos.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --verde: #2d6a4f;
+    --verde-claro: #52b788;
+    --verde-neon: #74c69d;
+    --oscuro: #0d1b14;
+    --oscuro2: #132219;
+    --texto: #e8f5ee;
+    --texto-suave: #a8c5b0;
+    --borde: rgba(116, 198, 157, 0.15);
+  }
+  html { scroll-behavior: smooth; }
+  body { background: var(--oscuro); color: var(--texto); font-family: 'Inter', sans-serif; overflow-x: hidden; min-height: 100vh; }
+  ::-webkit-scrollbar { width: 5px; }
+  ::-webkit-scrollbar-track { background: var(--oscuro2); }
+  ::-webkit-scrollbar-thumb { background: var(--verde); border-radius: 3px; }
+
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 20px 40px;
+    background: rgba(13, 27, 20, 0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--borde);
+  }
+  .nav-logo { color: var(--verde-neon); font-family: 'Space Grotesk', sans-serif; font-size: 1rem; font-weight: 700; text-decoration: none; letter-spacing: 0.05em; }
+  .nav-links { list-style: none; display: flex; gap: 32px; }
+  .nav-links a { color: var(--texto-suave); text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: color 0.2s; }
+  .nav-links a:hover, .nav-links a.active { color: var(--verde-neon); }
+
+  .page-wrapper { padding: 130px 20px 80px; max-width: 900px; margin: 0 auto; }
+
+  /* TÍTULO CON LETRAS FLOTANTES */
+  .titulo-animado {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.2rem, 6vw, 4rem);
+    font-weight: 900;
+    margin-bottom: 16px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.3em;
+    line-height: 1.3;
+  }
+  .letra {
+    display: inline-block;
+    animation: flotar 2.8s ease-in-out infinite;
+    color: var(--texto);
+  }
+  .letra.verde { color: var(--verde-neon); }
+  @keyframes flotar {
+    0%, 100% { transform: translateY(0px); }
+    50%       { transform: translateY(-12px); }
+  }
+
+  .page-subtitle { color: var(--texto-suave); font-size: 1rem; margin-bottom: 48px; }
+
+  /* VIDEO THUMBNAIL */
+  .video-thumb {
+    position: relative;
+    display: block;
+    width: 100%;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid var(--borde);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+    text-decoration: none;
+  }
+  .video-thumb img {
+    width: 100%;
+    display: block;
+    transition: transform 0.4s ease, filter 0.4s ease;
+    filter: brightness(0.75);
+  }
+  .video-thumb:hover img {
+    transform: scale(1.03);
+    filter: brightness(0.6);
+  }
+  .play-btn {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90px; height: 90px;
+    background: rgba(116,198,157,0.9);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    transition: transform 0.3s ease, background 0.3s ease;
+    box-shadow: 0 0 50px rgba(116,198,157,0.5);
+  }
+  .video-thumb:hover .play-btn {
+    transform: translate(-50%, -50%) scale(1.12);
+    background: var(--verde-neon);
+  }
+  .play-btn svg { fill: var(--oscuro); margin-left: 6px; }
+  .video-aviso {
+    text-align: center;
+    color: var(--texto-suave);
+    font-size: 0.82rem;
+    margin-top: 12px;
+  }
+
+  footer {
+    text-align: center;
+    padding: 32px 20px;
+    color: var(--texto-suave);
+    font-size: 0.8rem;
+    border-top: 1px solid var(--borde);
+    margin-top: 80px;
+  }
+
+  @media (max-width: 768px) {
+    nav { padding: 16px 20px; }
+    .nav-links { gap: 16px; }
+    .nav-links a { font-size: 0.8rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">⬡ DOMOS ECOLÓGICOS</a>
+  <ul class="nav-links">
+    <li><a href="index.html#sobre">Nosotros</a></li>
+    <li><a href="index.html#servicios">Servicios</a></li>
+    <li><a href="galeria.html">Galería</a></li>
+    <li><a href="video.html" class="active">Video</a></li>
+    <li><a href="index.html#contacto">Contacto</a></li>
+  </ul>
+</nav>
+
+<div class="page-wrapper">
+
+  <h1 class="titulo-animado" id="titulo"></h1>
+  <p class="page-subtitle">Mira cómo se ve un domo geodésico real en Chile.</p>
+
+  <a href="https://www.youtube.com/watch?v=p62ThwfM-s4" target="_blank" rel="noopener" class="video-thumb">
+    <img src="https://img.youtube.com/vi/p62ThwfM-s4/maxresdefault.jpg" alt="Nuestros domos geodésicos en acción — Chile" loading="lazy">
+    <div class="play-btn">
+      <svg width="32" height="32" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+    </div>
+  </a>
+  <p class="video-aviso">▶ Ver en YouTube</p>
+
+</div>
+
+<footer>
+  © 2026 Domos Ecológicos Chile · <a href="index.html" style="color:inherit;">Volver al inicio</a>
+</footer>
+
+<script>
+  const palabras = [
+    { texto: "Nuestros", verde: false },
+    { texto: "domos", verde: true },
+    { texto: "en", verde: false },
+    { texto: "acción", verde: false }
+  ];
+
+  const titulo = document.getElementById('titulo');
+  let delay = 0;
+
+  palabras.forEach(({ texto, verde }) => {
+    const span = document.createElement('span');
+    span.style.display = 'inline-flex';
+    [...texto].forEach(letra => {
+      const l = document.createElement('span');
+      l.className = 'letra' + (verde ? ' verde' : '');
+      l.textContent = letra;
+      l.style.animationDelay = delay.toFixed(2) + 's';
+      delay += 0.06;
+      span.appendChild(l);
+    });
+    titulo.appendChild(span);
+  });
+</script>
+
+</body>
+</html>
